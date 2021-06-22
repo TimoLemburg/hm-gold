@@ -1,18 +1,20 @@
 {
-  "name": "hm3-gold",
+  "name": "hm-gold",
   "title": "HarnMaster Gold",
   "description": "Converts and adds features to support use for HarnMaster Gold",
   "version": "0.1.0",
   "author": "toasty",
   "minimumCoreVersion": "0.8.7",
   "compatibleCoreVersion": "0.8.7",
-  "scripts": [
-    "./scripts/hm-gold.js"
+  "system": ["hm3"],
+  "esmodules": [
+    "./modules/Patches.js",
+    "./hm-gold.js"
   ],
   "styles": [],
   "packs": [],
   "languages": [],
-  "url": "",
-  "manifest": "",
+  "url": "https://github.com/toastygm/hm-gold",
+  "manifest": "https://raw.githubusercontent.com/toastygm/hm-gold/master/module.json",
   "download": ""
 }
