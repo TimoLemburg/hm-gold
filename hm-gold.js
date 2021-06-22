@@ -36,11 +36,11 @@ new HMGold();
 
 
 Hooks.on('renderHarnMasterCharacterSheet', (actor, html, data) => {
-    HMGActor.characterRenderFix(actor, html, data);
+    HMGActor.actorRenderFix(actor, html, data);
 });
 
 Hooks.on('renderHarnMasterCreatureSheet', (actor, html, data) => {
-    HMGActor.creatureRenderFix(actor, html, data);
+    HMGActor.actorRenderFix(actor, html, data);
 });
 
 Hooks.on('hm3.preMeleeAttack', (combatant, targetToken, weapon) => {

@@ -59,7 +59,7 @@ export class HMGActor {
         actor.data.data.physicalPenalty = actor.data.data.eph.totalInjuryLevels + actor.data.data.eph.fatigue;
     }
 
-    static characterRenderFix(actorSheet, html, data) {
+    static actorRenderFix(actorSheet, html, data) {
         const actor = actorSheet.actor;
         const origData = data;
         data = origData.data;
@@ -305,9 +305,5 @@ export class HMGActor {
         const onPersonContainer = origData.containers['on-person'];
         const capacityVal = onPersonContainer.data.data.capacity.value;
         html.find('li[data-container-id="on-person"] div.gear-capacity').text(`Capacity: ${capacityVal}`);
-    }
-
-    static creatureRenderFix(actorSheet, html, data) {
-        let $form = html.find('#creature');
     }
 }
