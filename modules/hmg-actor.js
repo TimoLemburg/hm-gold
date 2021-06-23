@@ -66,7 +66,8 @@ export class HMGActor {
 
         html.find('div.stat').remove();     // Remove Universal Penalty
         html.find('div.endurance').remove() // Remove Shock Index
-        html.find('div.move').remove();     // Remove "move" field
+        html.find('div.endbar').remove()    // Remove Shock Index bar
+        html.find('li.move').remove();     // Remove "move" field
         html.find('ul.ability-scores li[data-ability="will"]').after(`
                     <li class="ability" data-ability="endurance">
                         <h4 class="ability-name box-title rollable">Endurance</h4>
@@ -216,8 +217,8 @@ export class HMGActor {
             let node = $(missile).children('.missile-extreme').first();
 
             // Add Extreme64 impact to missile
-            const extreme64Impact = mslItem.getFlag('hm-gold', 'extreme64Impact') || 0;
-            const extreme64Range = mslItem.getFlag('hm-gold', 'extreme64Range') || 0;
+            const extreme64Impact = mslItem.getFlag('hm-gold', 'extreme64-impact') || 0;
+            const extreme64Range = mslItem.getFlag('hm-gold', 'extreme64-range') || 0;
             let extreme64Content = "";
             if (extreme64Range < 0) {
                 extreme64Content = `<div class="item-detail missile-extreme"><i class="fas fa-times"></i></div>`;
@@ -236,8 +237,8 @@ export class HMGActor {
             }
 
             // Add Extreme128 impact to missile
-            const extreme128Impact = mslItem.getFlag('hm-gold', 'extreme128Impact') || 0;
-            const extreme128Range = mslItem.getFlag('hm-gold', 'extreme128Range') || 0;
+            const extreme128Impact = mslItem.getFlag('hm-gold', 'extreme128-impact') || 0;
+            const extreme128Range = mslItem.getFlag('hm-gold', 'extreme128-range') || 0;
             let extreme128Content = '';
             if (extreme128Range < 0) {
                 extreme128Content = `<div class="item-detail missile-extreme"><i class="fas fa-times"></i></div>`;
@@ -256,8 +257,8 @@ export class HMGActor {
             }
 
             // Add Extreme256 impact to missile
-            const extreme256Impact = mslItem.getFlag('hm-gold', 'extreme256Impact') || 0;
-            const extreme256Range = mslItem.getFlag('hm-gold', 'extreme256Range') || 0;
+            const extreme256Impact = mslItem.getFlag('hm-gold', 'extreme256-impact') || 0;
+            const extreme256Range = mslItem.getFlag('hm-gold', 'extreme256-range') || 0;
             let extreme256Content = '';
             if (extreme256Range < 0) {
                 extreme256Content = `<div class="item-detail missile-extreme"><i class="fas fa-times"></i></div>`;
@@ -278,6 +279,9 @@ export class HMGActor {
             node.after(extreme64Content, extreme128Content, extreme256Content);
         });
 
+        // Change the injury severity field's header to "IP" (for injury points)
+        html.find('li.items-header div.injury-severity').text('IP');
+
         // In the following section, we add the "Squeeze" and "Tear" fields to each of the
         // armorlocations in the armorlocations list.
         // First, we add the headers
@@ -296,7 +300,7 @@ export class HMGActor {
 
             // Add Tear impact to armorlocation
             const tearArmor = alItem.getFlag('hm-gold', 'tear') || 0;
-            let tearContent = `<div class="item-detail armorlocation-fire">${squeezeArmor}</div>`;
+            let tearContent = `<div class="item-detail armorlocation-fire">${tearArmor}</div>`;
 
             node.after(squeezeContent, tearContent);
         });

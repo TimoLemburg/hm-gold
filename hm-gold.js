@@ -35,12 +35,39 @@ CONFIG.debug.hooks = true;
 new HMGold();
 
 
-Hooks.on('renderHarnMasterCharacterSheet', (actor, html, data) => {
-    HMGActor.actorRenderFix(actor, html, data);
+Hooks.on('renderHarnMasterCharacterSheet', (actorSheet, html, data) => {
+    HMGActor.actorRenderFix(actorSheet, html, data);
+    return true;
 });
 
-Hooks.on('renderHarnMasterCreatureSheet', (actor, html, data) => {
-    HMGActor.actorRenderFix(actor, html, data);
+Hooks.on('renderHarnMasterCreatureSheet', (actorSheet, html, data) => {
+    HMGActor.actorRenderFix(actorSheet, html, data);
+    return true;
+});
+
+Hooks.on('renderHarnMasterItemSheet', (itemSheet, html, data) => {
+    const item = itemSheet.item;
+    switch (item.data.type) {
+        case 'armorgear':
+            HMGItem.armorgearRenderFix(itemSheet, html, data);
+            return true;;
+
+        case 'armorlocation':
+            HMGItem.armorlocationRenderFix(itemSheet, html, data);
+            return true;;
+
+        case 'injury':
+            HMGItem.injuryRenderFix(itemSheet, html, data);
+            return true;;
+
+        case 'missilegear':
+            HMGItem.missilegearRenderFix(itemSheet, html, data);
+            return true;;
+
+        case 'weapongear':
+            HMGItem.weapongearRenderFix(itemSheet, html, data);
+            return true;;
+    }
 });
 
 Hooks.on('hm3.preMeleeAttack', (combatant, targetToken, weapon) => {
