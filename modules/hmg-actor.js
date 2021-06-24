@@ -171,7 +171,7 @@ export class HMGActor {
             let node = $(weapon).children('.weapon-piercing').first();
 
             // Add Squeeze impact to weapon
-            const squeezeImpact = wpnItem.getFlag('hm-gold', 'squeeze') || 0;
+            const squeezeImpact = wpnItem.getFlag('hm-gold', 'squeeze-impact') || 0;
             let squeezeContent = '';
             if (squeezeImpact < 0) {
                 squeezeContent = `<div class="item-detail weapon-piercing"><i class="fas fa-times"></i></div>`;
@@ -190,7 +190,7 @@ export class HMGActor {
             }
 
             // Add Tear impact to weapon
-            const tearImpact = wpnItem.getFlag('hm-gold', 'tear') || 0;
+            const tearImpact = wpnItem.getFlag('hm-gold', 'tear-impact') || 0;
             let tearContent = '';
             if (tearImpact < 0) {
                 tearContent = `<div class="item-detail weapon-piercing"><i class="fas fa-times"></i></div>`;
@@ -214,26 +214,29 @@ export class HMGActor {
         // In the following section, we add the additional HMG ranges to the missiles
  
         // First, we add (or modify existing) headers
-        html.find('li.items-header.missile').empty().append(`
+        html.find('li.items-header.missile div.missile-skill ~ div').remove();
+        html.find('li.items-header.missile').append(`
            <div class="item-detail missile-extreme">4</div>
            <div class="item-detail missile-extreme">8</div>
            <div class="item-detail missile-extreme">16</div>
            <div class="item-detail missile-extreme">32</div>
            <div class="item-detail missile-extreme">64</div>
            <div class="item-detail missile-extreme">128</div>
-           <div class="item-detail missile-extreme">256</div>');
+           <div class="item-detail missile-extreme">256</div>
+           <div class="item-detail missile-attack">AML</div>
+           <div class="item-detail missile-notes">Notes</div>`);
 
         // Next, we add the ranges to each of the missiles
         html.find('ol.missile-list li.missile').each((index, missile) => {
             const mslItem = actor.items.get(missile.getAttribute('data-item-id'));
             const data = mslItem.data.data;
-            $(missile).remove('.missile-skill ~ div');
+            $(missile).find('.missile-skill ~ div').remove();
 
-            isActive = data.isEquipped && data.isCarried;
+            const isActive = data.isEquipped && data.isCarried;
             let missileContent = '';
             [4, 8, 16, 32, 64, 128, 256].forEach(range => {
-                const impact = mslItem.getFlag('hm-gold', 'range${range}-impact') || 0;
-                const modifier = mslItem.getFlag('hm-gold', 'extreme${range}-modifier') || 0;
+                const impact = mslItem.getFlag('hm-gold', `range${range}-impact`) || 0;
+                const modifier = mslItem.getFlag('hm-gold', `extreme${range}-modifier`) || 0;
                 if (impact < 0) {
                     missileContent += `<div class="item-detail missile-extreme"><i class="fas fa-times"></i></div>`;
                 } else {
@@ -261,7 +264,6 @@ export class HMGActor {
             }
 
             missileContent += `<div class="item-detail missile-notes">${data.notes}</div>`;
-
             $(missile).append(missileContent);
         });
 
