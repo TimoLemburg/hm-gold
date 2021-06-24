@@ -1,11 +1,22 @@
+/**
+ * HMG Actor Class
+ * This class implements all of the mechanisms to override the HarnMasterActor class as well as the
+ * HTML fixups for the Actor sheets (HarnMasterCharacterSheet and HarnMasterCreatureSheet).
+ *
+ * The following flags are defined to hold actor data (the scope is always "hm-gold"):
+ *    ability-speed: The speed ability attribute
+ *    ability-touch: The touch ability attribute
+ *    ability-frame: The frame ability attribute
+ *    ability-endurance: The endurance ability attribute
+ */
 export class HMGActor {
     static prepareBaseData(actor) {
         const data = actor.data.data;
         const eph = data.eph;
-        foundry.utils.setProperty(data, "abilities.speed.base", actor.getFlag('hm-gold', 'speed') || 0);
-        foundry.utils.setProperty(data, "abilities.touch.base", actor.getFlag('hm-gold', 'touch') || 0);
-        foundry.utils.setProperty(data, "abilities.frame.base", actor.getFlag('hm-gold', 'frame') || 0);
-        foundry.utils.setProperty(data, "abilities.endurance.base", actor.getFlag('hm-gold', 'endurance') || 0);
+        foundry.utils.setProperty(data, "abilities.speed.base", actor.getFlag('hm-gold', 'ability-speed') || 0);
+        foundry.utils.setProperty(data, "abilities.touch.base", actor.getFlag('hm-gold', 'ability-touch') || 0);
+        foundry.utils.setProperty(data, "abilities.frame.base", actor.getFlag('hm-gold', 'ability-frame') || 0);
+        foundry.utils.setProperty(data, "abilities.endurance.base", actor.getFlag('hm-gold', 'ability-endurance') || 0);
         data.abilities.speed.effective = 0;
         data.abilities.touch.effective = 0;
         data.abilities.frame.effective = 0;
@@ -78,7 +89,7 @@ export class HMGActor {
                                         class="fas fa-dice-d6"></i></a>
                             </div>
                             <div class="ability-box">
-                                <input class="ability-base" type="number" name="flags.hm-gold.endurance"
+                                <input class="ability-base" type="number" name="flags.hm-gold.ability-endurance"
                                     value="${data.abilities.endurance.base}" data-dtype="Number" />
                             </div>
                             <div class="item-dice">
@@ -96,7 +107,7 @@ export class HMGActor {
                                         class="fas fa-dice-d6"></i></a>
                             </div>
                             <div class="ability-box">
-                                <input class="ability-base" type="number" name="flags.hm-gold.speed"
+                                <input class="ability-base" type="number" name="flags.hm-gold.ability-speed"
                                     value="${data.abilities.speed.base}" data-dtype="Number" />
                             </div>
                             <div class="item-dice">
@@ -115,7 +126,7 @@ export class HMGActor {
                                         class="fas fa-dice-d6"></i></a>
                             </div>
                             <div class="ability-box">
-                                <input class="ability-base" type="number" name="flags.hm-gold.touch"
+                                <input class="ability-base" type="number" name="flags.hm-gold.ability-touch"
                                     value="${data.abilities.touch.base}" data-dtype="Number" />
                             </div>
                             <div class="item-dice">
@@ -133,7 +144,7 @@ export class HMGActor {
                                         class="fas fa-dice-d6"></i></a>
                             </div>
                             <div class="ability-box">
-                                <input class="ability-base" type="number" name="flags.hm-gold.frame"
+                                <input class="ability-base" type="number" name="flags.hm-gold.ability-frame"
                                     value="${data.abilities.frame.base}" data-dtype="Number" />
                             </div>
                             <div class="item-dice">
@@ -201,82 +212,57 @@ export class HMGActor {
         });
 
         // In the following section, we add the additional HMG ranges to the missiles
-        // First, we add the headers
-        html.find('li.items-header.missile div.missile-short').text('4');
-        html.find('li.items-header.missile div.missile-medium').text('8');
-        html.find('li.items-header.missile div.missile-long').text('16');
-        html.find('li.items-header.missile div.missile-extreme').text('32').after(
-           '<div class="item-detail missile-extreme">64</div>',
-           '<div class="item-detail missile-extreme">128</div>',
-           '<div class="item-detail missile-extreme">256</div>');
+ 
+        // First, we add (or modify existing) headers
+        html.find('li.items-header.missile').empty().append(`
+           <div class="item-detail missile-extreme">4</div>
+           <div class="item-detail missile-extreme">8</div>
+           <div class="item-detail missile-extreme">16</div>
+           <div class="item-detail missile-extreme">32</div>
+           <div class="item-detail missile-extreme">64</div>
+           <div class="item-detail missile-extreme">128</div>
+           <div class="item-detail missile-extreme">256</div>');
 
         // Next, we add the ranges to each of the missiles
         html.find('ol.missile-list li.missile').each((index, missile) => {
             const mslItem = actor.items.get(missile.getAttribute('data-item-id'));
             const data = mslItem.data.data;
-            let node = $(missile).children('.missile-extreme').first();
+            $(missile).remove('.missile-skill ~ div');
 
-            // Add Extreme64 impact to missile
-            const extreme64Impact = mslItem.getFlag('hm-gold', 'extreme64-impact') || 0;
-            const extreme64Range = mslItem.getFlag('hm-gold', 'extreme64-range') || 0;
-            let extreme64Content = "";
-            if (extreme64Range < 0) {
-                extreme64Content = `<div class="item-detail missile-extreme"><i class="fas fa-times"></i></div>`;
-            } else {
-                const isActive = data.isEquipped && data.isCarried;
-                if (isActive) {
-                    extreme64Content = `
-                        <div class="item-detail missile-extreme active">
-                            <a class="missile-damage-roll"
-                                    title="${mslItem.data.name}} 64-Range Damage Roll"
-                                    data-weapon="${mslItem.data.name}"
-                                    data-range="Extreme64">${extreme64Range}/${extreme64Impact}</a></div>`;
+            isActive = data.isEquipped && data.isCarried;
+            let missileContent = '';
+            [4, 8, 16, 32, 64, 128, 256].forEach(range => {
+                const impact = mslItem.getFlag('hm-gold', 'range${range}-impact') || 0;
+                const modifier = mslItem.getFlag('hm-gold', 'extreme${range}-modifier') || 0;
+                if (impact < 0) {
+                    missileContent += `<div class="item-detail missile-extreme"><i class="fas fa-times"></i></div>`;
                 } else {
-                    extreme64Content = `<div class="item-detail missile-extreme">${extreme64Range}/${extreme64Impact}</div>`;
+                    if (isActive) {
+                        missileContent += `
+                            <div class="item-detail missile-extreme active">
+                                <a class="missile-damage-roll"
+                                        title="${mslItem.data.name} ${range}-Range Damage Roll"
+                                        data-weapon="${mslItem.data.name}"
+                                        data-range="${range}-hex">${modifier}/${impact}</a></div>`;
+                    } else {
+                        missileContent += `<div class="item-detail missile-extreme">${modifier}/${impact}</div>`;
+                    }
                 }
+            });
+
+            if (isActive) {
+                missileContent += `
+                            <div class="item-detail missile-attack active">
+                                <a class="missile-attack-roll"
+                                        title="Missile Attack Roll">${data.attackMasteryLevel}</a></div>
+`;
+            } else {
+                missileContent += `<div class="item-detail missile-attack">${data.attackMasteryLevel}</div>`;
             }
 
-            // Add Extreme128 impact to missile
-            const extreme128Impact = mslItem.getFlag('hm-gold', 'extreme128-impact') || 0;
-            const extreme128Range = mslItem.getFlag('hm-gold', 'extreme128-range') || 0;
-            let extreme128Content = '';
-            if (extreme128Range < 0) {
-                extreme128Content = `<div class="item-detail missile-extreme"><i class="fas fa-times"></i></div>`;
-            } else {
-                const isActive = data.isEquipped && data.isCarried;
-                if (isActive) {
-                    extreme128Content = `
-                        <div class="item-detail missile-extreme active">
-                            <a class="missile-damage-roll"
-                                    title="${mslItem.data.name}} 128-Range Damage Roll"
-                                    data-weapon="${mslItem.data.name}"
-                                    data-range="Extreme128">${extreme128Range}/${extreme128Impact}</a></div>`;
-                } else {
-                    extreme128Content = `<div class="item-detail missile-extreme">${extreme128Range}/${extreme128Impact}</div>`;
-                }
-            }
+            missileContent += `<div class="item-detail missile-notes">${data.notes}</div>`;
 
-            // Add Extreme256 impact to missile
-            const extreme256Impact = mslItem.getFlag('hm-gold', 'extreme256-impact') || 0;
-            const extreme256Range = mslItem.getFlag('hm-gold', 'extreme256-range') || 0;
-            let extreme256Content = '';
-            if (extreme256Range < 0) {
-                extreme256Content = `<div class="item-detail missile-extreme"><i class="fas fa-times"></i></div>`;
-            } else {
-                const isActive = data.isEquipped && data.isCarried;
-                if (isActive) {
-                    extreme256Content = `
-                        <div class="item-detail missile-extreme active">
-                            <a class="missile-damage-roll"
-                                    title="${mslItem.data.name}} 256-Range Damage Roll"
-                                    data-weapon="${mslItem.data.name}"
-                                    data-range="Extreme256">${extreme256Range}/${extreme256Impact}</a></div>`;
-                } else {
-                    extreme256Content = `<div class="item-detail missile-extreme">${extreme256Range}/${extreme256Impact}</div>`;
-                }
-            }
-
-            node.after(extreme64Content, extreme128Content, extreme256Content);
+            $(missile).append(missileContent);
         });
 
         // Change the injury severity field's header to "IP" (for injury points)
