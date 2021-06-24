@@ -236,7 +236,7 @@ export class HMGActor {
             let missileContent = '';
             [4, 8, 16, 32, 64, 128, 256].forEach(range => {
                 const impact = mslItem.getFlag('hm-gold', `range${range}-impact`) || 0;
-                const modifier = mslItem.getFlag('hm-gold', `extreme${range}-modifier`) || 0;
+                const modifier = mslItem.getFlag('hm-gold', `range${range}-modifier`) || 0;
                 if (impact < 0) {
                     missileContent += `<div class="item-detail missile-extreme"><i class="fas fa-times"></i></div>`;
                 } else {
