@@ -9,6 +9,9 @@
   "system": ["hm3"],
   "esmodules": [
     "./modules/Patches.js",
+    "./modules/hmg-actor.js",
+    "./modules/hmg-item.js",
+    "./modules/hmg-dice.js",
     "./hm-gold.js"
   ],
   "styles": [],
