@@ -36,6 +36,7 @@ Hooks.once('init', async () => {
     FurnacePatching.replaceFunction(game.hm3.HarnMasterItem, "calcPenaltyPct", HMGItem.calcPenaltyPct);
 
     FurnacePatching.replaceFunction(game.hm3.DiceHM3, "calcWeaponAspect", HMGDice.calcWeaponAspect);
+    FurnacePatching.replaceFunction(game.hm3.DiceHM3, "missileAttackDialog", HMGDice.missileAttackDialog);
 });
 
 Hooks.on('renderHarnMasterCharacterSheet', (actorSheet, html, data) => {
@@ -75,10 +76,9 @@ Hooks.on('renderHarnMasterItemSheet', (itemSheet, html, data) => {
     }
 });
 
-Hooks.on('hm3.preMissileAttackRoll', (combatant, targetToken, missile) => {
-    // TODO
-    ui.notifications.warn('Assisted Missile Attack Rolls not available in HarnMaster Gold Mode');
-    return false;
+Hooks.on('hm3.preMissileAttackRoll', (rollData, actor, missile) => {
+    rollData.missile = missile;
+    return true;
 });
 
 Hooks.on('hm3.preMeleeAttack', (combatant, targetToken, weapon) => {
