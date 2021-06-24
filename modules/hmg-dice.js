@@ -1,4 +1,4 @@
-class HMGDice {
+export class HMGDice {
     /**
      * Returns a structure specifying the default aspect for a weapon, as well as the
      * impact values for all other aspects.  The default aspect is always the aspect
@@ -7,7 +7,7 @@ class HMGDice {
      * @param {*} weapon Name of weapon
      * @param {*} items List of items containing 'weapongear' items.
      */
-    static _calcWeaponAspect(weapon, items) {
+    static calcWeaponAspect(weapon, items) {
         // Note that although "Fire" is in this list, because it is a
         // type of damage, no normal weapon uses it as its aspect.
         // It is here so that it can be selected (no default impact
@@ -30,8 +30,8 @@ class HMGDice {
         items.forEach(it => {
             const itemData = it.data;
             if (itemData.type === 'weapongear' && itemData.name === weapon) {
-                const squeezeImpact = it.getFlag('hmg','squeeze-impact');
-                const tearImpact = it.getFlag('hmg', 'tear-impact');
+                const squeezeImpact = it.getFlag('hm-gold','squeeze-impact');
+                const tearImpact = it.getFlag('hm-gold', 'tear-impact');
                 let maxImpact = Math.max(itemData.data.blunt, itemData.data.piercing, itemData.data.edged, 
                     squeezeImpact, tearImpact, 0);
                 result.aspects["Blunt"] = itemData.data.blunt;
@@ -59,24 +59,39 @@ class HMGDice {
         return result;
     }
 
-    static async missileDamageRoll(rollData) {
+    static async missileDamageRoll(rollData, missile) {
         const speaker = rollData.speaker || ChatMessage.getSpeaker();
 
-        const ranges = ();
-        const ranges["4-hex"].impact = missile.getFlag('hmg','range4-impact');
-        const ranges["8-hex"].impact = missile.getFlag('hmg','range8-impact');
-        const ranges["16-hex"].impact = missile.getFlag('hmg','range16-impact');
-        const ranges["32-hex"].impact = missile.getFlag('hmg','range32-impact');
-        const ranges["64-hex"].impact = missile.getFlag('hmg','range64-impact');
-        const ranges["128-hex"].impact = missile.getFlag('hmg','range128-impact');
-        const ranges["256-hex"].impact = missile.getFlag('hmg','range256-impact');
-        const ranges["4-hex"].modifier = missile.getFlag('hmg','range4-modifier');
-        const ranges["8-hex"].modifier = missile.getFlag('hmg','range8-modifier');
-        const ranges["16-hex"].modifier = missile.getFlag('hmg','range16-modifier');
-        const ranges["32-hex"].modifier = missile.getFlag('hmg','range32-modifier');
-        const ranges["64-hex"].modifier = missile.getFlag('hmg','range64-modifier');
-        const ranges["128-hex"].modifier = missile.getFlag('hmg','range128-modifier');
-        const ranges["256-hex"].modifier = missile.getFlag('hmg','range256-modifier');
+        const ranges = {
+            "4-hex": {
+                impact: missile.getFlag('hm-gold','range4-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range4-modifier') || 0
+            },
+            "8-hex": {
+                impact: missile.getFlag('hm-gold','range8-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range8-modifier') || 0
+            },
+            "16-hex": {
+                impact: missile.getFlag('hm-gold','range16-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range16-modifier') || 0
+            },
+            "32-hex": {
+                impact: missile.getFlag('hm-gold','range32-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range32-modifier') || 0
+            },
+            "64-hex": {
+                impact: missile.getFlag('hm-gold','range64-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range64-modifier') || 0
+            },
+            "128-hex": {
+                impact: missile.getFlag('hm-gold','range128-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range128-modifier') || 0
+            },
+            "256-hex": {
+                impact: missile.getFlag('hm-gold','range256-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range256-modifier') || 0
+            }
+        }
 
         const dialogOptions = {
             name: rollData.name,
@@ -169,13 +184,13 @@ class HMGDice {
                 const form = html[0].querySelector("form");
                 const formAddlImpact = Number(form.addlImpact.value);
                 const formRange = form.range.value || dialogOptions.defaultRange;
-                let roll = await DiceHM3.rollTest({
+                let roll = await game.hm3.DiceHM3.rollTest({
                     type: dialogOptions.type,
                     target: 0,
                     data: dialogOptions.data,
                     diceSides: 6,
                     diceNum: 2,
-                    modifier: ranges[formRange].modifier
+                    modifier: dialogOptions.ranges[formRange].modifier
                 });
                 let result = {
                     type: roll.type,
