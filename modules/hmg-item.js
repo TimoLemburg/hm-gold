@@ -115,7 +115,6 @@ export class HMGItem {
                     <div></div>
                     <div></div>`);
         html.find('#armorlocation-probweight div.weight').setAttribute('class', 'weight grid grid-fixed-row grid-4col');
-        const probWeightArms = item.getFlag('hm-gold', 'probweight-arms') || 0;
         html.find('#armorlocation-probweight-low').after(`
                     <div class="prob-weight" id="armorlocation-probweight-arms">
                         <label class="label">Arms Aim</label>
