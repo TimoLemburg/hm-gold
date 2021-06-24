@@ -2,38 +2,30 @@ import { HMGActor } from './modules/hmg-actor.js';
 import { HMGItem } from './modules/hmg-item.js';
 import { FurnacePatching } from './modules/Patches.js';
 
-class HMGold {
-    constructor() {
-        Hooks.on('init', this.init.bind(this));
-        Hooks.on('ready', this.ready.bind(this));
-    }
+//CONFIG.debug.hooks = true;
 
-    init() {
-       // Add additional HMG aspects
-       game.hm3.config.allowedAspects = game.hm3.config.allowedAspects.concat(['Squeeze', 'Tear']);
+Hooks.once('init', async () => {
+    // Add additional HMG aspects
+    game.hm3.config.allowedAspects = game.hm3.config.allowedAspects.concat(['Squeeze', 'Tear']);
 
-       // Add additional HMG ranges
-       game.hm3.config.allowedRanges = game.hm3.config.allowedRanges.concat(['Extreme64', 'Extreme128', 'Extreme256']);
+    // Add additional HMG ranges
+    game.hm3.config.allowedRanges = game.hm3.config.allowedRanges.concat(['Extreme64', 'Extreme128', 'Extreme256']);
 
-       // Remove "Universl Penalty" from Active Effects dropdown list
-       delete game.hm3.config.activeEffectKey['data.universalPenalty'];
+    // Add "Condition" skill to set of default skills for both characters and creatures
+    game.hm3.config.defaultCharacterSkills['hm3.std-skills-physical'].push('Condition');
+    game.hm3.config.defaultCreatureSkills['hm3.std-skills-physical'] = ['Condition'];
 
-       // Replace some overriden methods
-       FurnacePatching.replaceFunction(game.hm3.HarnMasterActor, "calcUniversalPenalty", HMGActor.calcUniversalPenalty);
-       FurnacePatching.replaceFunction(game.hm3.HarnMasterActor, "calcPhysicalPenalty", HMGActor.calcPhysicalPenalty);
-       FurnacePatching.replaceFunction(game.hm3.HarnMasterActor, "calcShockIndex", HMGActor.calcShockIndex);
+    // Remove "Universl Penalty" from Active Effects dropdown list
+    delete game.hm3.config.activeEffectKey['data.universalPenalty'];
 
-       FurnacePatching.replaceFunction(game.hm3.HarnMasterItem, "calcInjurySeverity", HMGItem.calcInjurySeverity);
-       FurnacePatching.replaceFunction(game.hm3.HarnMasterItem, "calcPenaltyPct", HMGItem.calcPenaltyPct);
-    }
+    // Replace some overriden methods
+    FurnacePatching.replaceFunction(game.hm3.HarnMasterActor, "calcUniversalPenalty", HMGActor.calcUniversalPenalty);
+    FurnacePatching.replaceFunction(game.hm3.HarnMasterActor, "calcPhysicalPenalty", HMGActor.calcPhysicalPenalty);
+    FurnacePatching.replaceFunction(game.hm3.HarnMasterActor, "calcShockIndex", HMGActor.calcShockIndex);
 
-    ready() {
-    }
-}
-
-CONFIG.debug.hooks = true;
-new HMGold();
-
+    FurnacePatching.replaceFunction(game.hm3.HarnMasterItem, "calcInjurySeverity", HMGItem.calcInjurySeverity);
+    FurnacePatching.replaceFunction(game.hm3.HarnMasterItem, "calcPenaltyPct", HMGItem.calcPenaltyPct);
+});
 
 Hooks.on('renderHarnMasterCharacterSheet', (actorSheet, html, data) => {
     HMGActor.actorRenderFix(actorSheet, html, data);
@@ -70,6 +62,12 @@ Hooks.on('renderHarnMasterItemSheet', (itemSheet, html, data) => {
     }
 });
 
+Hooks.on('hm3.preMissileAttackRoll', (combatant, targetToken, missile) => {
+    // TODO
+    ui.notifications.warn('Assisted Missile Attack Rolls not available in HarnMaster Gold Mode');
+    return false;
+});
+
 Hooks.on('hm3.preMeleeAttack', (combatant, targetToken, weapon) => {
     ui.notifications.warn('Automated Combat not available in HarnMaster Gold Mode');
     return false;
@@ -101,10 +99,8 @@ Hooks.on('hm3.preIgnoreResume', (atkToken, defToken, type, weaponName, effAML, a
 });
 
 Hooks.on('hm3.preMissileDamageRoll', (rollData, actor, missile) => {
-    rollData.impactExtreme64 = missile.getFlag('hmg', 'impactExtreme64');
-    rollData.impactExtreme128 = missile.getFlag('hmg', 'impactExtreme128');
-    rollData.impactExtreme256 = missile.getFlag('hmg', 'impactExtreme256');
-    return true;
+    const result = await HMGDice.missileDamageRoll(rollData);
+    return false;  // abandon any further processing
 });
 
 Hooks.on('hm3.preWeaponAttackRoll', (stdRollData, actor, weapon) => {
@@ -143,7 +139,6 @@ Hooks.on('hm3.preStumbleRoll', (stdRollData, actor) => {
     game.hm3.DiceHM3.d100StdRoll(stdRollData).then(result => {
         // Don't forget to run any custom macros when the roll is complete!
         actor.runCustomMacro(result);
-        game.hm3.macros.callOnHooks("hm3.onStumbleRoll", actor, result, stdRollData);
     });
    
     return false;  // abandon any further processing
@@ -153,30 +148,9 @@ Hooks.on('hm3.preFumbleRoll', (stdRollData, actor) => {
     game.hm3.DiceHM3.d100StdRoll(stdRollData).then(result => {
         // Don't forget to run any custom macros when the roll is complete!
         actor.runCustomMacro(result);
-        game.hm3.macros.callOnHooks("hm3.onStumbleRoll", actor, result, stdRollData);
     });
    
     return false;  // abandon any further processing
-});
-
-Hooks.on('preCreateActor', (actor, createData, options, userId) => {
-    // only add 'Condition' skill to characters and creatures
-    if (['character', 'creature'].includes(createData.type)) {
-        game.packs
-            .get('hm3.std-skills-physical')
-            .getDocuments()
-            .then((result) => {
-                let chain = Promise.resolve()
-                result.forEach(async (ability, index) => {
-                    chain = await chain.then(async () => {
-                        if (['Condition'].includes(ability.name)) {
-                            const updateData = { items: [ ability.data ] };
-                            await actor.data.update(updateData);
-                        }
-                    });
-                });
-            });
-    }
 });
 
 Hooks.on('hm3.onActorPrepareBaseData', (actor) => HMGActor.prepareBaseData(actor) );
