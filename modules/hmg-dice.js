@@ -30,8 +30,8 @@ class HMGDice {
         items.forEach(it => {
             const itemData = it.data;
             if (itemData.type === 'weapongear' && itemData.name === weapon) {
-                const squeezeImpact = it.getFlag('hmg','squeezeImpact');
-                const tearImpact = it.getFlag('hmg', 'tearImpact');
+                const squeezeImpact = it.getFlag('hmg','squeeze-impact');
+                const tearImpact = it.getFlag('hmg', 'tear-impact');
                 let maxImpact = Math.max(itemData.data.blunt, itemData.data.piercing, itemData.data.edged, 
                     squeezeImpact, tearImpact, 0);
                 result.aspects["Blunt"] = itemData.data.blunt;
@@ -62,23 +62,31 @@ class HMGDice {
     static async missileDamageRoll(rollData) {
         const speaker = rollData.speaker || ChatMessage.getSpeaker();
 
+        const ranges = ();
+        const ranges["4-hex"].impact = missile.getFlag('hmg','range4-impact');
+        const ranges["8-hex"].impact = missile.getFlag('hmg','range8-impact');
+        const ranges["16-hex"].impact = missile.getFlag('hmg','range16-impact');
+        const ranges["32-hex"].impact = missile.getFlag('hmg','range32-impact');
+        const ranges["64-hex"].impact = missile.getFlag('hmg','range64-impact');
+        const ranges["128-hex"].impact = missile.getFlag('hmg','range128-impact');
+        const ranges["256-hex"].impact = missile.getFlag('hmg','range256-impact');
+        const ranges["4-hex"].modifier = missile.getFlag('hmg','range4-modifier');
+        const ranges["8-hex"].modifier = missile.getFlag('hmg','range8-modifier');
+        const ranges["16-hex"].modifier = missile.getFlag('hmg','range16-modifier');
+        const ranges["32-hex"].modifier = missile.getFlag('hmg','range32-modifier');
+        const ranges["64-hex"].modifier = missile.getFlag('hmg','range64-modifier');
+        const ranges["128-hex"].modifier = missile.getFlag('hmg','range128-modifier');
+        const ranges["256-hex"].modifier = missile.getFlag('hmg','range256-modifier');
+
         const dialogOptions = {
             name: rollData.name,
-            ranges: {
-                "Short": rollData.impactShort,
-                "Medium": rollData.impactMedium,
-                "Long": rollData.impactLong,
-                "Extreme": rollData.impactExtreme,
-                "Extreme64": rollData.impactExtreme64,
-                "Extreme128": rollData.impactExtreme128,
-                "Extreme256": rollData.impactExtreme256
-            },
-            defaultRange: rollData.defaultRange ? rollData.defaultRange : "Extreme256",
+            ranges: ranges,
+            defaultRange: rollData.defaultRange ? rollData.defaultRange : "256-hex",
             data: rollData.data
         };
 
         // Create the Roll instance
-        const roll = await game.hm3.DiceHM3.missileDamageDialog(dialogOptions);
+        const roll = await HMGDice.missileDamageDialog(dialogOptions);
 
         // If user cancelled the roll, then return immediately
         if (!roll) return null;
@@ -91,23 +99,7 @@ class HMGDice {
             title = `${rollData.name} Damage`; 
         }
 
-        let rangeImpact = 0;
-        if (roll.range === 'Short') {
-            rangeImpact = rollData.impactShort;
-        } else if (roll.range === 'Medium') {
-            rangeImpact = rollData.impactMedium;
-        } else if (roll.range === 'Long') {
-            rangeImpact = rollData.impactLong;
-        } else if (roll.range === 'Extreme') {
-            rangeImpact = rollData.impactExtreme;
-        } else if (roll.range === 'Extreme64') {
-            rangeImpact = rollData.impactExtreme64;
-        } else if (roll.range === 'Extreme128') {
-            rangeImpact = rollData.impactExtreme128;
-        } else if (roll.range === 'Extreme256') {
-            rangeImpact = rollData.impactExtreme256
-        }
-
+        let rangeImpact = ranges[roll.range].impact || 0;;
         const totalImpact = Number(rangeImpact) + Number(roll.addlImpact) + Number(roll.rollObj.total);
 
         const notesData = mergeObject(rollData.notesData, {
@@ -154,5 +146,48 @@ class HMGDice {
     
         return chatTemplateData;
     }
+
+    static async missileDamageDialog(dialogOptions) {
+    
+        // Render modal dialog
+        let dlgTemplate = dialogOptions.template || "modules/hm-gold/templates/dialog/missile-damage-dialog.html";
+        let dialogData = {
+            name: dialogOptions.name,
+            ranges: dialogOptions.ranges,
+            defaultRange: dialogOptions.defaultRange
+        };
+        const html = await renderTemplate(dlgTemplate, dialogData);
+        
+        const title = `${dialogOptions.name} Missile Damage`;
+
+        // Create the dialog window
+        return Dialog.prompt({
+            title: dialogOptions.label,
+            content: html.trim(),
+            label: "Roll",
+            callback: async html => {
+                const form = html[0].querySelector("form");
+                const formAddlImpact = Number(form.addlImpact.value);
+                const formRange = form.range.value || dialogOptions.defaultRange;
+                let roll = await DiceHM3.rollTest({
+                    type: dialogOptions.type,
+                    target: 0,
+                    data: dialogOptions.data,
+                    diceSides: 6,
+                    diceNum: 2,
+                    modifier: ranges[formRange].modifier
+                });
+                let result = {
+                    type: roll.type,
+                    range: formRange,
+                    damageDice: 2,
+                    addlImpact: formAddlImpact,
+                    rollObj: roll.rollObj
+                }
+                return result;
+            }
+        });
+    }
+
 
 }
