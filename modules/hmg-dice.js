@@ -265,7 +265,6 @@ export class HMGDice {
         const defaultRangeKey = Object.keys(ranges).sort((first, second) => { parseInt(first, 10) - parseInt(second, 10); }).slice(-1)[0];
         dialogData.defaultRange = ranges[defaultRangeKey].desc;
 
-        console.log(dialogData);
         const html = await renderTemplate(dlgTemplate, dialogData);
         const title = `${dialogOptions.name} Attack`;
 
