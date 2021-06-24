@@ -1,15 +1,24 @@
 import { HMGActor } from './modules/hmg-actor.js';
 import { HMGItem } from './modules/hmg-item.js';
+import { HMGDice } from './modules/hmg-dice.js';
 import { FurnacePatching } from './modules/Patches.js';
 
 //CONFIG.debug.hooks = true;
+
+// re-enable listeners
+function reEnableListeners(sheet, html) {
+    html.find("*").off();
+    sheet.activateListeners(html);
+    // re-enable core listeners (for drag & drop)
+    sheet._activateCoreListeners(html);
+}
 
 Hooks.once('init', async () => {
     // Add additional HMG aspects
     game.hm3.config.allowedAspects = game.hm3.config.allowedAspects.concat(['Squeeze', 'Tear']);
 
     // Add additional HMG ranges
-    game.hm3.config.allowedRanges = game.hm3.config.allowedRanges.concat(['Extreme64', 'Extreme128', 'Extreme256']);
+    game.hm3.config.allowedRanges = ['4-hex', '8-hex', '16-hex', '32-hex', '64-hex', '128-hex', '256-hex'];
 
     // Add "Condition" skill to set of default skills for both characters and creatures
     game.hm3.config.defaultCharacterSkills['hm3.std-skills-physical'].push('Condition');
@@ -25,15 +34,19 @@ Hooks.once('init', async () => {
 
     FurnacePatching.replaceFunction(game.hm3.HarnMasterItem, "calcInjurySeverity", HMGItem.calcInjurySeverity);
     FurnacePatching.replaceFunction(game.hm3.HarnMasterItem, "calcPenaltyPct", HMGItem.calcPenaltyPct);
+
+    FurnacePatching.replaceFunction(game.hm3.DiceHM3, "calcWeaponAspect", HMGDice.calcWeaponAspect);
 });
 
 Hooks.on('renderHarnMasterCharacterSheet', (actorSheet, html, data) => {
     HMGActor.actorRenderFix(actorSheet, html, data);
+    reEnableListeners(actorSheet, html);
     return true;
 });
 
 Hooks.on('renderHarnMasterCreatureSheet', (actorSheet, html, data) => {
     HMGActor.actorRenderFix(actorSheet, html, data);
+    reEnableListeners(actorSheet, html);
     return true;
 });
 
@@ -99,7 +112,7 @@ Hooks.on('hm3.preIgnoreResume', (atkToken, defToken, type, weaponName, effAML, a
 });
 
 Hooks.on('hm3.preMissileDamageRoll', (rollData, actor, missile) => {
-    const result = await HMGDice.missileDamageRoll(rollData);
+    HMGDice.missileDamageRoll(rollData, missile);
     return false;  // abandon any further processing
 });
 
