@@ -204,5 +204,114 @@ export class HMGDice {
         });
     }
 
+    static async missileAttackDialog(dialogOptions) {
+    
+        // Render modal dialog
+        let dlgTemplate = "modules/hm-gold/templates/dialog/attack-dialog.html";
+
+        let dialogData = {
+            aimLocations: ['High', 'Mid', 'Low', 'Arms'],
+            defaultAim: 'Mid',
+            target: dialogOptions.target
+        };
+
+        const missile = dialogOptions.missile;
+
+        const ranges = {
+            "4-hex": {
+                impact: missile.getFlag('hm-gold','range4-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range4-modifier') || 0
+            },
+            "8-hex": {
+                impact: missile.getFlag('hm-gold','range8-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range8-modifier') || 0
+            },
+            "16-hex": {
+                impact: missile.getFlag('hm-gold','range16-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range16-modifier') || 0
+            },
+            "32-hex": {
+                impact: missile.getFlag('hm-gold','range32-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range32-modifier') || 0
+            },
+            "64-hex": {
+                impact: missile.getFlag('hm-gold','range64-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range64-modifier') || 0
+            },
+            "128-hex": {
+                impact: missile.getFlag('hm-gold','range128-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range128-modifier') || 0
+            },
+            "256-hex": {
+                impact: missile.getFlag('hm-gold','range256-impact') || 0,
+                modifier: missile.getFlag('hm-gold','range256-modifier') || 0
+            }
+        }
+        Object.keys(ranges).forEach(range => {
+            if (ranges[range].impact < 0) {
+                // remove any ranges that are unavailable
+                delete ranges[range];
+            } else {
+                ranges[range].desc = `${range} (${ranges[range].modifier}/${ranges[range].impact})`;
+            }
+        });
+
+        dialogData.ranges = {};
+        Object.entries(ranges).forEach(([key, value]) => {
+            dialogData.ranges[value.desc] = key;
+        });
+        dialogData.rangeExceedsExtreme = false;
+        // Get the greatest range value, that's the default range
+        const defaultRangeKey = Object.keys(ranges).sort((first, second) => { parseInt(first, 10) - parseInt(second, 10); }).slice(-1)[0];
+        dialogData.defaultRange = ranges[defaultRangeKey].desc;
+
+        console.log(dialogData);
+        const html = await renderTemplate(dlgTemplate, dialogData);
+        const title = `${dialogOptions.name} Attack`;
+
+        // Create the dialog window
+        return Dialog.prompt({
+            title: dialogOptions.label,
+            content: html.trim(),
+            label: "Roll",
+            callback: async html => {
+                const form = html[0].querySelector("form");
+                const formAddlModifier = Number(form.addlModifier.value);
+                let formRange = form.range.value;
+                for (let range in ranges) {
+                    if (formRange === ranges[range].desc) {
+                        formRange = range;
+                        break;
+                    }
+                }
+
+                const rangeModifier = ranges[formRange].modifier;
+
+                let roll = await game.hm3.DiceHM3.rollTest({
+                    type: dialogOptions.type,
+                    target: dialogOptions.target,
+                    data: dialogOptions.data,
+                    diceSides: 100,
+                    diceNum: 1,
+                    modifier: formAddlModifier + rangeModifier
+                });
+
+                let result = {
+                    type: roll.type,
+                    origTarget: dialogOptions.target,
+                    range: formRange,
+                    rangeModifier: rangeModifier,
+                    addlModifier: formAddlModifier,
+                    modifiedTarget: Number(dialogOptions.target) + rangeModifier + formAddlModifier,
+                    isSuccess: roll.isSuccess,
+                    isCritical: roll.isCritical,
+                    description: roll.description,
+                    rollObj: roll.rollObj
+                }
+                return result;
+            }
+        });
+    }
+
 
 }
