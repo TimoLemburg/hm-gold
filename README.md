@@ -1,5 +1,5 @@
-# HarnMaster Gold
-HarnMaster Gold module for Foundry VTT
+# H&acirc;rnMaster Gold
+H&acirc;rnMaster Gold module for Foundry VTT
 
 This module modifies the [H&acirc;rnMaster 3](https://foundryvtt.com/packages/hm3) system for Foundry VTT
 to enable users to use the H&acirc;rnMaster Gold rules.  This is a basic (and still experimental) implementation
