@@ -16,5 +16,13 @@ Specific Differences from HM3:
 * Missile attacks and missile defense have been substantially altered to fit HMG rules.
 * Condition is used for most purposes that Endurance is used in HM3
 
-Release Notes:
+Planned next steps:
+* Weapon Data
+* Armour Data
+* Psionic Talents
+* Magic Spells
+* Encounter Generation/Lists (maybe...)
+* Treasure Generation/Lists (maybe...)
 
+Release Notes:
+* 2021-07-07 - Added Skills & Ritual Invocations
