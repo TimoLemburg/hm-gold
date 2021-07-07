@@ -33,6 +33,6 @@
   ],
   "languages": [],
   "url": "https://github.com/TimoLemburg/hm-gold",
-  "manifest": "https://github.com/TimoLemburg/hm-gold/blob/master/module.json",
-  "download": "https://github.com/toastygm/hm-gold/archive/v0.1.1.zip"
+  "manifest": "https://raw.githubusercontent.com/TimoLemburg/hm-gold/master/module.json",
+  "download": "https://github.com/TimoLemburg/hm-gold/archive/v0.1.1.zip"
 }
