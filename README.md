@@ -16,3 +16,5 @@ Specific Differences from HM3:
 * Missile attacks and missile defense have been substantially altered to fit HMG rules.
 * Condition is used for most purposes that Endurance is used in HM3
 
+Release Notes:
+

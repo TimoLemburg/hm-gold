@@ -2,8 +2,12 @@
   "name": "hm-gold",
   "title": "HarnMaster Gold",
   "description": "Converts and adds features to support use for HarnMaster Gold",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "authors": [
+    {
+      "name": "Timo Lemburg",
+      "discord": "Dicetimo#3857"
+    },
     {
       "name": "Tom Rodriguez",
       "discord": "toasty#8538"
@@ -20,9 +24,15 @@
     "./hm-gold.js"
   ],
   "styles": [],
-  "packs": [],
+  "packs": [
+    "./packs/hmg-skills-combat.db",
+    "./packs/hmg-skills-communication.db",
+    "./packs/hmg-skills-crafts-and-lore.db",
+    "./packs/hmg-skills-physical.db",
+    "./packs/hmg-skills-ritual.db"
+  ],
   "languages": [],
-  "url": "https://github.com/toastygm/hm-gold",
-  "manifest": "https://raw.githubusercontent.com/toastygm/hm-gold/master/module.json",
-  "download": "https://github.com/toastygm/hm-gold/archive/v0.1.0.zip"
+  "url": "https://github.com/TimoLemburg/hm-gold",
+  "manifest": "https://github.com/TimoLemburg/hm-gold/blob/master/module.json",
+  "download": "https://github.com/toastygm/hm-gold/archive/v0.1.1.zip"
 }
