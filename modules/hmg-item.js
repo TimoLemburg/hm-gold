@@ -6,6 +6,8 @@
  * The following flags are defined to hold item data (the scope is always "hm-gold"):
  *
  *    Item Type       Flag
+ *    weapongear      strength-required
+ *    weapongear      attack-sec-mod
  *    weapongear      squeeze-impact
  *    weapongear      tear-impact
  *    missilegear     range4-modifier
@@ -60,8 +62,17 @@ export class HMGItem {
 
         const squeeze = item.getFlag('hm-gold', 'squeeze') || 0;
         const tear = item.getFlag('hm-gold', 'tear') || 0;
+        html.find('#armorgear-size').after(`
+        <div></div>
+        <div></div>
+        <div></div>`);
+
         html.find('#armorgear-fire').after(`
-             <div class="armorgear-protection-item" id="armorgear-squeeze">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="armorgear-protection-item" id="armorgear-squeeze">
                  <label class="label">Squeeze</label>
                  <input class="value" type="number" name="flags.hm-gold.squeeze"
                      value="${squeeze}" data-dtype="Number" />
@@ -82,7 +93,20 @@ export class HMGItem {
 
         const squeeze = item.getFlag('hm-gold', 'squeeze-impact') || 0;
         const tear = item.getFlag('hm-gold', 'tear-impact') || 0;
+        const strreq = item.getFlag('hm-gold', 'strength-required') || 0;
+        const attacksec = item.getFlag('hm-gold', 'attack-sec-mod') || 0;
+        html.find('#weapongear-attack-mod label').text('Primary Hand Mod');
+        html.find('#weapongear-attack-mod').next().replaceWith(`
+            <div class="resource" id="weapongear-attack-sec-mod">
+                <label class="resource-label">Secondary Hand Mod</label>
+                <input type="number" name="flags.hm-gold.attack-sec-mod" value="${attacksec}" data-dtype="Number" />
+            </div>`);
+        html.find('#weapongear-attack label').text('Attack Class');
+        html.find('#weapongear-defense label').text('Defence Class');
         html.find('#weapongear-piercing').after(`
+                <div></div>
+                <div></div>
+                <div></div>
                 <div class="resource" id="weapongear-squeeze">
                     <label class="resource-label">Squeeze</label>
                     <input type="number" name="flags.hm-gold.squeeze-impact" value="${squeeze}" data-dtype="Number" />
@@ -91,6 +115,18 @@ export class HMGItem {
                     <label class="resource-label">Tear</label>
                     <input type="number" name="flags.hm-gold.tear-impact" value="${tear}" data-dtype="Number" />
                 </div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>`);
+        html.find('#weapongear-assocskill').after(`
+                <div class="resource" id="weapongear-strength-required">
+                    <label class="resource-label">Strength required</label>
+                    <input type="number" name="flags.hm-gold.strength-required" value="${strreq}" data-dtype="Number" />
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
                 <div></div>`);
     }
 
