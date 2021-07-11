@@ -227,7 +227,7 @@
       "path": "/packs/hmg-weapons-staves.db",
       "system": "hm3",
       "entity": "Item"
-    },
+    }
   ],
   "languages": [],
   "url": "https://github.com/TimoLemburg/hm-gold",
