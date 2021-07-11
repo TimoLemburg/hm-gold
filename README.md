@@ -17,12 +17,13 @@ Specific Differences from HM3:
 * Condition is used for most purposes that Endurance is used in HM3
 
 Planned next steps:
-* Weapon Data
-* Armour Data
+* Change to Missile Weapon template to allow for Impact with percent values
+* Weapon Data - only missing thrown missile weapons due to needed backend change
 * Psionic Talents
 * Magic Spells
 * Encounter Generation/Lists (maybe...)
 * Treasure Generation/Lists (maybe...)
 
 Release Notes:
-* 2021-07-07 - Added Skills & Ritual Invocations
+* v0.1.2 (2021-07-11) - Added Weapons (only some Missile Weapons missing due to neccessary changes), Armour Data
+* v0.1.1 (2021-07-07) - Added Skills & Ritual Invocations
