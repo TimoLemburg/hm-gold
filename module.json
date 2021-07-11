@@ -2,7 +2,10 @@
   "name": "hm-gold",
   "title": "HarnMaster Gold",
   "description": "Converts and adds features to support use for HarnMaster Gold",
-  "version": "0.1.1",
+  "version": "0.1.2",
+  "minimumCoreVersion": "0.8.8",
+  "compatibleCoreVersion": "0.8.8",
+  "system": ["hm3"],
   "authors": [
     {
       "name": "Timo Lemburg",
@@ -13,18 +16,16 @@
       "discord": "toasty#8538"
     }
   ],
-  "minimumCoreVersion": "0.8.7",
-  "compatibleCoreVersion": "0.8.7",
-  "system": ["hm3"],
   "esmodules": [
-    "./modules/Patches.js",
+    "./hm-gold.js"
     "./modules/hmg-actor.js",
     "./modules/hmg-item.js",
     "./modules/hmg-dice.js",
-    "./hm-gold.js"
+    "./modules/Patches.js",
   ],
   "styles": [],
   "packs": [
+    "./packs/hmg-armour.db"
     "./packs/hmg-invocations-agrik.db",
     "./packs/hmg-invocations-halea.db",
     "./packs/hmg-invocations-ilvir.db",
@@ -39,10 +40,23 @@
     "./packs/hmg-skills-communication.db",
     "./packs/hmg-skills-crafts-and-lore.db",
     "./packs/hmg-skills-physical.db",
-    "./packs/hmg-skills-ritual.db"
+    "./packs/hmg-skills-ritual.db",
+    "./packs/hmg-weapons-axes.db",
+    "./packs/hmg-weapons-bows.db",
+    "./packs/hmg-weapons-clubbing-weapons.db",
+    "./packs/hmg-weapons-flails.db",
+    "./packs/hmg-weapons-knives-and-shortswords.db",
+    "./packs/hmg-weapons-longswords.db",
+    "./packs/hmg-weapons-missile-weapons.db",
+    "./packs/hmg-weapons-natural.db",
+    "./packs/hmg-weapons-nets-and-whips.db",
+    "./packs/hmg-weapons-other-missile-weapons.db",
+    "./packs/hmg-weapons-polearms.db",
+    "./packs/hmg-weapons-shields.db",
+    "./packs/hmg-weapons-staves.db"
   ],
   "languages": [],
   "url": "https://github.com/TimoLemburg/hm-gold",
   "manifest": "https://raw.githubusercontent.com/TimoLemburg/hm-gold/master/module.json",
-  "download": "https://github.com/TimoLemburg/hm-gold/archive/v0.1.1.zip"
+  "download": "https://github.com/TimoLemburg/hm-gold/archive/v0.1.2.zip"
 }
