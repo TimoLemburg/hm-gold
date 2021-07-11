@@ -2,7 +2,7 @@
   "name": "hm-gold",
   "title": "HarnMaster Gold",
   "description": "Converts and adds features to support use for HarnMaster Gold",
-  "version": "0.1.2",
+  "version": "0.1.2.1",
   "minimumCoreVersion": "0.8.8",
   "compatibleCoreVersion": "0.8.8",
   "system": ["hm3"],
@@ -17,15 +17,15 @@
     }
   ],
   "esmodules": [
-    "./hm-gold.js"
+    "./hm-gold.js",
     "./modules/hmg-actor.js",
     "./modules/hmg-item.js",
     "./modules/hmg-dice.js",
-    "./modules/Patches.js",
+    "./modules/Patches.js"
   ],
   "styles": [],
   "packs": [
-    "./packs/hmg-armour.db"
+    "./packs/hmg-armour.db",
     "./packs/hmg-invocations-agrik.db",
     "./packs/hmg-invocations-halea.db",
     "./packs/hmg-invocations-ilvir.db",
@@ -58,5 +58,5 @@
   "languages": [],
   "url": "https://github.com/TimoLemburg/hm-gold",
   "manifest": "https://raw.githubusercontent.com/TimoLemburg/hm-gold/master/module.json",
-  "download": "https://github.com/TimoLemburg/hm-gold/archive/v0.1.2.zip"
+  "download": "https://github.com/TimoLemburg/hm-gold/archive/v0.1.2.1.zip"
 }
