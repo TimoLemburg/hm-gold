@@ -2,10 +2,7 @@
   "name": "hm-gold",
   "title": "HarnMaster Gold",
   "description": "Converts and adds features to support use for HarnMaster Gold",
-  "version": "0.1.2.1",
-  "minimumCoreVersion": "0.8.8",
-  "compatibleCoreVersion": "0.8.8",
-  "system": ["hm3"],
+  "version": "0.1.1",
   "authors": [
     {
       "name": "Timo Lemburg",
@@ -16,47 +13,26 @@
       "discord": "toasty#8538"
     }
   ],
+  "minimumCoreVersion": "0.8.7",
+  "compatibleCoreVersion": "0.8.7",
+  "system": ["hm3"],
   "esmodules": [
-    "./hm-gold.js",
+    "./modules/Patches.js",
     "./modules/hmg-actor.js",
     "./modules/hmg-item.js",
     "./modules/hmg-dice.js",
-    "./modules/Patches.js"
+    "./hm-gold.js"
   ],
   "styles": [],
   "packs": [
-    "./packs/hmg-armour.db",
-    "./packs/hmg-invocations-agrik.db",
-    "./packs/hmg-invocations-halea.db",
-    "./packs/hmg-invocations-ilvir.db",
-    "./packs/hmg-invocations-larani.db",
-    "./packs/hmg-invocations-morgath.db",
-    "./packs/hmg-invocations-naveh.db",
-    "./packs/hmg-invocations-peoni.db",
-    "./packs/hmg-invocations-sarajin.db",
-    "./packs/hmg-invocations-save-knor.db",
-    "./packs/hmg-invocations-siem.db",
     "./packs/hmg-skills-combat.db",
     "./packs/hmg-skills-communication.db",
     "./packs/hmg-skills-crafts-and-lore.db",
     "./packs/hmg-skills-physical.db",
-    "./packs/hmg-skills-ritual.db",
-    "./packs/hmg-weapons-axes.db",
-    "./packs/hmg-weapons-bows.db",
-    "./packs/hmg-weapons-clubbing-weapons.db",
-    "./packs/hmg-weapons-flails.db",
-    "./packs/hmg-weapons-knives-and-shortswords.db",
-    "./packs/hmg-weapons-longswords.db",
-    "./packs/hmg-weapons-missile-weapons.db",
-    "./packs/hmg-weapons-natural.db",
-    "./packs/hmg-weapons-nets-and-whips.db",
-    "./packs/hmg-weapons-other-missile-weapons.db",
-    "./packs/hmg-weapons-polearms.db",
-    "./packs/hmg-weapons-shields.db",
-    "./packs/hmg-weapons-staves.db"
+    "./packs/hmg-skills-ritual.db"
   ],
   "languages": [],
   "url": "https://github.com/TimoLemburg/hm-gold",
-  "manifest": "https://raw.githubusercontent.com/TimoLemburg/hm-gold/master/module.json",
-  "download": "https://github.com/TimoLemburg/hm-gold/archive/v0.1.2.1.zip"
+  "manifest": "https://github.com/TimoLemburg/hm-gold/blob/master/module.json",
+  "download": "https://github.com/toastygm/hm-gold/archive/v0.1.1.zip"
 }
