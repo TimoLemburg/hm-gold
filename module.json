@@ -3,8 +3,8 @@
   "title": "HarnMaster Gold",
   "description": "Converts and adds features to support use for HarnMaster Gold",
   "version": "0.1.1",
-  "minimumCoreVersion": "0.8.8",
-  "compatibleCoreVersion": "0.8.8",
+  "minimumCoreVersion": "0.8.7",
+  "compatibleCoreVersion": "0.8.7",
   "system": ["hm3"],
   "authors": [
     {
