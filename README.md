@@ -25,4 +25,5 @@ Planned next steps:
 * Treasure Generation/Lists (maybe...)
 
 Release Notes:
-* v0.1.1 (2021-07-11) - Added Skills, Ritual Invocations, Weapons (only some Missile Weapons missing due to neccessary changes), Armour Data
+* v0.1.2.1 (2021-07-11) - Added default HMG skills for new character creation, fixing some typos
+* v0.1.2 (2021-07-11) - Added Skills, Ritual Invocations, Weapons (only some Missile Weapons missing due to neccessary changes), Armour Data

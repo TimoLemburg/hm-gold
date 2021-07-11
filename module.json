@@ -2,9 +2,9 @@
   "name": "hm-gold",
   "title": "HarnMaster Gold",
   "description": "Converts and adds features to support use for HarnMaster Gold",
-  "version": "0.1.2",
+  "version": "0.1.2.1",
   "minimumCoreVersion": "0.8.7",
-  "compatibleCoreVersion": "0.8.7",
+  "compatibleCoreVersion": "0.8.8",
   "system": ["hm3"],
   "authors": [
     {
@@ -33,70 +33,70 @@
       "entity": "Item"
     },
     {
-      "label": "HMG Invocations Agrik",
+      "label": "HMG Invocations Ágrik",
       "name": "hmg-invocations-agrik",
       "path": "/packs/hmg-invocations-agrik.db",
       "system": "hm3",
       "entity": "Item"
     },
     {
-      "label": "HMG Invocations Halea",
+      "label": "HMG Invocations Haléa",
       "name": "hmg-invocations-halea",
       "path": "/packs/hmg-invocations-halea.db",
       "system": "hm3",
       "entity": "Item"
     },
     {
-      "label": "HMG Invocations Ilvir",
+      "label": "HMG Invocations Ilvîr",
       "name": "hmg-invocations-ilvir",
       "path": "/packs/hmg-invocations-ilvir.db",
       "system": "hm3",
       "entity": "Item"
     },
     {
-      "label": "HMG Invocations Larani",
+      "label": "HMG Invocations Laráni",
       "name": "hmg-invocations-larani",
       "path": "/packs/hmg-invocations-larani.db",
       "system": "hm3",
       "entity": "Item"
     },
     {
-      "label": "HMG Invocations Morgath",
+      "label": "HMG Invocations Môrgath",
       "name": "hmg-invocations-morgath",
       "path": "/packs/hmg-invocations-morgath.db",
       "system": "hm3",
       "entity": "Item"
     },
     {
-      "label": "HMG Invocations naveh",
+      "label": "HMG Invocations Navéh",
       "name": "hmg-invocations-naveh",
       "path": "/packs/hmg-invocations-naveh.db",
       "system": "hm3",
       "entity": "Item"
     },
     {
-      "label": "HMG Invocations Peoni",
+      "label": "HMG Invocations Peóni",
       "name": "hmg-invocations-peoni",
       "path": "/packs/hmg-invocations-peoni.db",
       "system": "hm3",
       "entity": "Item"
     },
     {
-      "label": "HMG Invocations Sarajin",
+      "label": "HMG Invocations Sárajìn",
       "name": "hmg-invocations-sarajin",
       "path": "/packs/hmg-invocations-sarajin.db",
       "system": "hm3",
       "entity": "Item"
     },
     {
-      "label": "HMG Invocations Save K'nor",
+      "label": "HMG Invocations Sávè-K'nôr",
       "name": "hmg-invocations-save-knor",
       "path": "/packs/hmg-invocations-save-knor.db",
       "system": "hm3",
       "entity": "Item"
     },
     {
-      "label": "HMG Invocations Siem",
+      "label": "HMG Invocations Siém",
       "name": "hmg-invocations-siem",
       "path": "/packs/hmg-invocations-siem.db",
       "system": "hm3",
@@ -112,7 +112,7 @@
     {
       "label": "HMG Skills Communication",
       "name": "hmg-skills-communication",
-      "path": "/packs/hmg-skills-communicatio.db",
+      "path": "/packs/hmg-skills-communication.db",
       "system": "hm3",
       "entity": "Item"
     },
@@ -231,6 +231,6 @@
   ],
   "languages": [],
   "url": "https://github.com/TimoLemburg/hm-gold",
-  "manifest": "https://raw.githubusercontent.com/TimoLemburg/hm-gold/v0.1.2/module.json",
-  "download": "https://github.com/TimoLemburg/hm-gold/archive/v0.1.2.zip"
+  "manifest": "https://raw.githubusercontent.com/TimoLemburg/hm-gold/v0.1.2.1/module.json",
+  "download": "https://github.com/TimoLemburg/hm-gold/archive/v0.1.2.1.zip"
 }
