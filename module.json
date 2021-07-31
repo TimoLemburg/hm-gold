@@ -2,7 +2,7 @@
   "name": "hm-gold",
   "title": "HarnMaster Gold",
   "description": "Converts and adds features to support use for HarnMaster Gold",
-  "version": "0.1.2.1",
+  "version": "0.1.2.2",
   "minimumCoreVersion": "0.8.7",
   "compatibleCoreVersion": "0.8.8",
   "system": ["hm3"],
@@ -231,6 +231,6 @@
   ],
   "languages": [],
   "url": "https://github.com/TimoLemburg/hm-gold",
-  "manifest": "https://raw.githubusercontent.com/TimoLemburg/hm-gold/v0.1.2.1/module.json",
-  "download": "https://github.com/TimoLemburg/hm-gold/archive/v0.1.2.1.zip"
+  "manifest": "https://raw.githubusercontent.com/TimoLemburg/hm-gold/v0.1.2.2/module.json",
+  "download": "https://github.com/TimoLemburg/hm-gold/archive/v0.1.2.2.zip"
 }

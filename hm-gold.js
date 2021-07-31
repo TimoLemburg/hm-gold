@@ -10,7 +10,7 @@ function reEnableListeners(sheet, html) {
     html.find("*").off();
     sheet.activateListeners(html);
     // re-enable core listeners (for drag & drop)
-    sheet.activateCoreListeners(html);
+    //sheet._activateCoreListeners(html);
 }
 
 Hooks.once('init', async () => {
