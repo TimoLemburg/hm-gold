@@ -20,14 +20,20 @@ Hooks.once('init', async () => {
     // Add additional HMG ranges
     game.hm3.config.allowedRanges = ['4-hex', '8-hex', '16-hex', '32-hex', '64-hex', '128-hex', '256-hex'];
 
-    // Add "Condition" skill to set of default skills for both characters and creatures
+    // Set default skills for Characters and Creatures, including adding Condition
     delete game.hm3.config.defaultCharacterSkills['hm3.std-skills-physical']
     game.hm3.config.defaultCharacterSkills['hm-gold.hmg-skills-physical'] = ['CLIMBING', 'CONDITION', 'JUMPING', 'MOBILITY', 'STEALTH', 'THROWING'];
     delete game.hm3.config.defaultCharacterSkills['hm3.std-skills-communication']
     game.hm3.config.defaultCharacterSkills['hm-gold.hmg-skills-communication'] = ['AWARENESS', 'INTRIGUE', 'ORATORY', 'RHETORIC', 'SINGING', "LANGUAGE: NATIVE"];
     delete game.hm3.config.defaultCharacterSkills['hm3.std-skills-combat']
     game.hm3.config.defaultCharacterSkills['hm-gold.hmg-skills-combat'] = ['DODGE', 'INITIATIVE', 'UNARMED'];
-    game.hm3.config.defaultCreatureSkills['hm3.std-skills-physical'] = ['Condition'];
+
+    delete game.hm3.config.defaultCreatureSkills['hm3.std-skills-communication'];
+    game.hm3.config.defaultCreatureSkills['hm-gold.hmg-skills-communication'] = ['AWARENESS'];
+    delete game.hm3.config.defaultCreatureSkills['hm3.std-skills-combat'];
+    game.hm3.config.defaultCreatureSkills['hm-gold.hmg-skills-combat'] = ['DODGE', 'INITIATIVE', 'UNARMED'];
+    game.hm3.config.defaultCreatureSkills['hm-gold.hmg-skills-physical'] = ['CLIMBING', 'CONDITION', 'JUMPING', 'MOBILITY', 'STEALTH', 'THROWING'];
+    
 
     // Remove "Universl Penalty" from Active Effects dropdown list
     delete game.hm3.config.activeEffectKey['data.universalPenalty'];
