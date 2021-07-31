@@ -34,9 +34,9 @@ export class HMGActor {
 
         // The following calculations are different for HM Gold
         data.condition = Math.max(data.condition - data.physicalPenalty, 5);
-        eph.stumbleTarget = Math.max(Math.max(data.abilities.agility.effective, data.dodge) - data.physicalPenalty, 5);
-        eph.fumbleTarget = Math.max((data.abilities.dexterity.effective * 5) - data.physicalPenalty, 5)
-
+        eph.stumbleTarget = Math.max(Math.max(data.abilities.agility.base * 5 - data.physicalPenalty, data.dodge) , 5);
+        eph.fumbleTarget = Math.max(data.abilities.dexterity.base * 5 - data.physicalPenalty, 5 );
+        
         // In HMG abilities are not affected by physical or universal penalty
         data.abilities.strength.effective = eph.strength;
         data.abilities.stamina.effective = eph.stamina;
