@@ -103,6 +103,13 @@
       "entity": "Item"
     },
     {
+      "label": "HMG Psionics",
+      "name": "hmg-psionics",
+      "path": "/packs/hmg-psionics.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
       "label": "HMG Skills Combat",
       "name": "hmg-skills-combat",
       "path": "/packs/hmg-skills-combat.db",
