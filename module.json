@@ -40,6 +40,13 @@
       "entity": "RollTable"
     },
     {
+      "label": "HMG Esoteric Tables",
+      "name": "hmg-esoteric-tables",
+      "path": "/packs/hmg-esoteric-tables.db",
+      "system": "hm3",
+      "entity": "RollTable"
+    },
+    {
       "label": "HMG Invocations Ágrik",
       "name": "hmg-invocations-agrik",
       "path": "/packs/hmg-invocations-agrik.db",
