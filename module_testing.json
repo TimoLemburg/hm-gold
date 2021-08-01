@@ -238,6 +238,6 @@
   ],
   "languages": [],
   "url": "https://github.com/TimoLemburg/hm-gold",
-  "manifest": "https://raw.githubusercontent.com/TimoLemburg/hm-gold/v0.1.1/module_testing.json",
-  "download": "https://github.com/TimoLemburg/hm-gold/archive/v0.1.1.zip"
+  "manifest": "https://github.com/TimoLemburg/hm-gold/raw/master/module_testing.json",
+  "download": "https://github.com/TimoLemburg/hm-gold/archive/refs/heads/master.zip"
 }
