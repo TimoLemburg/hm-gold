@@ -33,6 +33,13 @@
       "entity": "Item"
     },
     {
+      "label": "HMG Character Generation",
+      "name": "hmg-character-generation",
+      "path": "/packs/hmg-character-generation.db",
+      "system": "hm3",
+      "entity": "RollTable"
+    },
+    {
       "label": "HMG Invocations Ágrik",
       "name": "hmg-invocations-agrik",
       "path": "/packs/hmg-invocations-agrik.db",
