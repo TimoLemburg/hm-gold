@@ -2,8 +2,8 @@
   "name": "hm-gold",
   "title": "HarnMaster Gold",
   "description": "Converts and adds features to support use for HarnMaster Gold",
-  "version": "0.1.1",
-  "minimumCoreVersion": "0.8.8",
+  "version": "0.1.2.2",
+  "minimumCoreVersion": "0.8.7",
   "compatibleCoreVersion": "0.8.8",
   "system": ["hm3"],
   "authors": [
@@ -24,7 +24,218 @@
     "./modules/Patches.js"
   ],
   "styles": [],
-  "packs": [],
+  "packs": [
+    {
+      "label": "HMG Armour",
+      "name": "hmg-armour",
+      "path": "/packs/hmg-armour.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Ágrik",
+      "name": "hmg-invocations-agrik",
+      "path": "/packs/hmg-invocations-agrik.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Haléa",
+      "name": "hmg-invocations-halea",
+      "path": "/packs/hmg-invocations-halea.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Ilvîr",
+      "name": "hmg-invocations-ilvir",
+      "path": "/packs/hmg-invocations-ilvir.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Laráni",
+      "name": "hmg-invocations-larani",
+      "path": "/packs/hmg-invocations-larani.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Môrgath",
+      "name": "hmg-invocations-morgath",
+      "path": "/packs/hmg-invocations-morgath.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Navéh",
+      "name": "hmg-invocations-naveh",
+      "path": "/packs/hmg-invocations-naveh.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Peóni",
+      "name": "hmg-invocations-peoni",
+      "path": "/packs/hmg-invocations-peoni.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Sárajìn",
+      "name": "hmg-invocations-sarajin",
+      "path": "/packs/hmg-invocations-sarajin.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Sávè-K'nôr",
+      "name": "hmg-invocations-save-knor",
+      "path": "/packs/hmg-invocations-save-knor.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Siém",
+      "name": "hmg-invocations-siem",
+      "path": "/packs/hmg-invocations-siem.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Psionics",
+      "name": "hmg-psionics",
+      "path": "/packs/hmg-psionics.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Skills Combat",
+      "name": "hmg-skills-combat",
+      "path": "/packs/hmg-skills-combat.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Skills Communication",
+      "name": "hmg-skills-communication",
+      "path": "/packs/hmg-skills-communication.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Skills Craft and Lore",
+      "name": "hmg-skills-craft-and-lore",
+      "path": "/packs/hmg-skills-craft-and-lore.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Skills Physical",
+      "name": "hmg-skills-physical",
+      "path": "/packs/hmg-skills-physical.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Skills Ritual",
+      "name": "hmg-skills-ritual",
+      "path": "/packs/hmg-skills-ritual.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Axes",
+      "name": "hmg-weapons-axes",
+      "path": "/packs/hmg-weapons-axes.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Bows",
+      "name": "hmg-weapons-bows",
+      "path": "/packs/hmg-weapons-bows.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Clubbing Weapons",
+      "name": "hmg-weapons-clubbing-weapons",
+      "path": "/packs/hmg-weapons-clubbing-weapons.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Flails",
+      "name": "hmg-weapons-flails",
+      "path": "/packs/hmg-weapons-flails.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Knives and Shortswords",
+      "name": "hmg-weapons-knives-and-shortswords",
+      "path": "/packs/hmg-weapons-knives-and-shortswords.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Longswords",
+      "name": "hmg-weapons-longswords",
+      "path": "/packs/hmg-weapons-longswords.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Missile",
+      "name": "hmg-weapons-missile-weapons",
+      "path": "/packs/hmg-weapons-missile-weapons.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Natural Weapons",
+      "name": "hmg-weapons-natural",
+      "path": "/packs/hmg-weapons-natural.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Nets and Whips",
+      "name": "hmg-weapons-nets-and-whips",
+      "path": "/packs/hmg-weapons-nets-and-whips.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Other Missile Weapons",
+      "name": "hmg-weapons-other-missile-weapons",
+      "path": "/packs/hmg-weapons-other-missile-weapoms.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Polearms",
+      "name": "hmg-weapons-polearms",
+      "path": "/packs/hmg-weapons-polearms.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Shields",
+      "name": "hmg-weapons-shields",
+      "path": "/packs/hmg-weapons-shields.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Staves",
+      "name": "hmg-weapons-staves",
+      "path": "/packs/hmg-weapons-staves.db",
+      "system": "hm3",
+      "entity": "Item"
+    }
+  ],
   "languages": [],
   "url": "https://github.com/TimoLemburg/hm-gold",
   "manifest": "https://raw.githubusercontent.com/TimoLemburg/hm-gold/v0.1.1/module_testing.json",
