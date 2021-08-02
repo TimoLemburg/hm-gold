@@ -258,5 +258,5 @@
   ],
   "url": "https://github.com/TimoLemburg/hm-gold",
   "manifest": "https://raw.githubusercontent.com/TimoLemburg/hm-gold/latest/module.json",
-  "download": "https://github.com/TimoLemburg/hm-gold/archive/v0.1.2.3.zip"
+  "download": "https://github.com/TimoLemburg/hm-gold/archive/refs/tags/latest.zip"
 }
