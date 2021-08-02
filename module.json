@@ -253,7 +253,7 @@
   "languages": [],
   "dependencies": [
     {
-      "name": "better-rolltables",
+      "name": "better-rolltables"
     }
   ],
   "url": "https://github.com/TimoLemburg/hm-gold",
