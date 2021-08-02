@@ -27,12 +27,15 @@ Hooks.once('init', async () => {
     game.hm3.config.defaultCharacterSkills['hm-gold.hmg-skills-communication'] = ['AWARENESS', 'INTRIGUE', 'ORATORY', 'RHETORIC', 'SINGING', "LANGUAGE: NATIVE"];
     delete game.hm3.config.defaultCharacterSkills['hm3.std-skills-combat']
     game.hm3.config.defaultCharacterSkills['hm-gold.hmg-skills-combat'] = ['DODGE', 'INITIATIVE', 'UNARMED'];
+    game.hm3.config.defaultCharacterSkills['hm-gold.hmg-psionics'] = ['SPIRIT'];
+    
 
     delete game.hm3.config.defaultCreatureSkills['hm3.std-skills-communication'];
     game.hm3.config.defaultCreatureSkills['hm-gold.hmg-skills-communication'] = ['AWARENESS'];
     delete game.hm3.config.defaultCreatureSkills['hm3.std-skills-combat'];
     game.hm3.config.defaultCreatureSkills['hm-gold.hmg-skills-combat'] = ['DODGE', 'INITIATIVE', 'UNARMED'];
     game.hm3.config.defaultCreatureSkills['hm-gold.hmg-skills-physical'] = ['CLIMBING', 'CONDITION', 'JUMPING', 'MOBILITY', 'STEALTH', 'THROWING'];
+    game.hm3.config.defaultCreatureSkills['hm-gold.hmg-psionics'] = ['SPIRIT'];
     
 
     // Remove "Universl Penalty" from Active Effects dropdown list
