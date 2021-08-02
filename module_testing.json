@@ -2,7 +2,7 @@
   "name": "hm-gold",
   "title": "HarnMaster Gold",
   "description": "Converts and adds features to support use for HarnMaster Gold",
-  "version": "0.1.2.2",
+  "version": "0.1.2.3",
   "minimumCoreVersion": "0.8.7",
   "compatibleCoreVersion": "0.8.8",
   "system": ["hm3"],
@@ -251,7 +251,12 @@
     }
   ],
   "languages": [],
+  "dependencies": [
+    {
+      "name": "better-rolltables",
+    }
+  ],
   "url": "https://github.com/TimoLemburg/hm-gold",
-  "manifest": "https://github.com/TimoLemburg/hm-gold/raw/master/module_testing.json",
+  "manifest": "https://github.com/TimoLemburg/hm-gold/raw/master/module.json",
   "download": "https://github.com/TimoLemburg/hm-gold/archive/refs/heads/master.zip"
 }

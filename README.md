@@ -19,11 +19,12 @@ Specific Differences from HM3:
 Planned next steps:
 * Change to Missile Weapon template to allow for Impact with percent values
 * Weapon Data - only missing thrown missile weapons due to needed backend change
-* Psionic Talents
 * Magic Spells
 * Encounter Generation/Lists (maybe...)
 * Treasure Generation/Lists (maybe...)
 
 Release Notes:
+* v0.1.2.3 (2021-08-02) - Added Psionics, new Default Skill "Spirit" and Roll Tables for Psionics, Medical Disorders and Psyche
+* v0.1.2.2 (2021-07-31) - Fixed item error with double entries for all "items" in Character Sheet, fixed the Craft & Lore Skill List and corrected the Fumble & Stumble Roll calculation
 * v0.1.2.1 (2021-07-11) - Added default HMG skills for new character creation, fixing some typos
 * v0.1.2 (2021-07-11) - Added Skills, Ritual Invocations, Weapons (only some Missile Weapons missing due to neccessary changes), Armour Data
