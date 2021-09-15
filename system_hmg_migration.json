@@ -1,0 +1,462 @@
+{
+  "name": "hm3",
+  "title": "HarnMaster 3",
+  "description": "The HarnMaster system for FoundryVTT!",
+  "version": "1.2.21",
+  "minimumCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "0.8.9",
+  "templateVersion": 2,
+  "bugs": "https://github.com/toastygm/HarnMaster-3-FoundryVTT/issues",
+  "license": "LICENSE",
+  "readme": "README.md",
+  "authors": [
+    {
+      "name": "Tom Rodriguez",
+      "discord": "toasty#8538"
+    }
+  ],
+  "esmodules": ["module/hm3.js"],
+  "styles": ["css/hm3.css"],
+  "scripts": [],
+  "packs": [
+    {
+      "label": "Std Spells - Fyvria",
+      "name": "std-spell-fyvria",
+      "path": "packs/std-spell-fyvria.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Spells - Jmorvi",
+      "name": "std-spell-jmorvi",
+      "path": "packs/std-spell-jmorvi.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Spells - Lyahvi",
+      "name": "std-spell-lyahvi",
+      "path": "packs/std-spell-lyahvi.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Spells - Neutral",
+      "name": "std-spell-neutral",
+      "path": "packs/std-spell-neutral.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Spells - Odivishe",
+      "name": "std-spell-odivishe",
+      "path": "packs/std-spell-odivishe.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Spells - Peleahn",
+      "name": "std-spell-peleahn",
+      "path": "packs/std-spell-peleahn.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Spells - Savorya",
+      "name": "std-spell-savorya",
+      "path": "packs/std-spell-savorya.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Rituals - Agrik",
+      "name": "std-rituals-agrik",
+      "path": "packs/std-rituals-agrik.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Rituals - Halea",
+      "name": "std-rituals-halea",
+      "path": "packs/std-rituals-halea.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Rituals - Ilvir",
+      "name": "std-rituals-ilvir",
+      "path": "packs/std-rituals-ilvir.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Rituals - Larani",
+      "name": "std-rituals-larani",
+      "path": "packs/std-rituals-larani.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Rituals - Morgath",
+      "name": "std-rituals-morgath",
+      "path": "packs/std-rituals-morgath.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Rituals - Naveh",
+      "name": "std-rituals-naveh",
+      "path": "packs/std-rituals-naveh.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Rituals - Peoni",
+      "name": "std-rituals-peoni",
+      "path": "packs/std-rituals-peoni.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Rituals - Sarajin",
+      "name": "std-rituals-sarajin",
+      "path": "packs/std-rituals-sarajin.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Rituals - Save-K'nor",
+      "name": "std-rituals-save-knor",
+      "path": "packs/std-rituals-save-knor.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Rituals - Siem",
+      "name": "std-rituals-siem",
+      "path": "packs/std-rituals-siem.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Skills - Physical",
+      "name": "std-skills-physical",
+      "path": "packs/std-skills-physical.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Skills - Communication",
+      "name": "std-skills-communication",
+      "path": "packs/std-skills-communication.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Skills - Combat",
+      "name": "std-skills-combat",
+      "path": "packs/std-skills-combat.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Skills - Crafts & Lore",
+      "name": "std-skills-crafts-and-lore",
+      "path": "packs/std-skills-crafts-and-lore.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Skills - Religion",
+      "name": "std-skills-religion",
+      "path": "packs/std-skills-religion.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Skills - Magic",
+      "name": "std-skills-magic",
+      "path": "packs/std-skills-magic.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Psionics",
+      "name": "std-psionics",
+      "path": "packs/std-psionics.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Melee Weapons",
+      "name": "std-melee-weapons",
+      "path": "packs/std-melee-weapons.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Missile Weapons",
+      "name": "std-missile-weapons",
+      "path": "packs/std-missile-weapons.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "Std Armor",
+      "name": "std-armor",
+      "path": "packs/std-armor.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "System Help",
+      "name": "system-help",
+      "path": "packs/system-help.db",
+      "system": "hm3",
+      "entity": "JournalEntry"
+    },
+    {
+      "label": "HMG Armour",
+      "name": "hmg-armour",
+      "path": "/packs/hmg-armour.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Character Generation",
+      "name": "hmg-character-generation",
+      "path": "/packs/hmg-character-generation.db",
+      "system": "hm3",
+      "entity": "RollTable"
+    },
+    {
+      "label": "HMG Esoteric Tables",
+      "name": "hmg-esoteric-tables",
+      "path": "/packs/hmg-esoteric-tables.db",
+      "system": "hm3",
+      "entity": "RollTable"
+    },
+    {
+      "label": "HMG Invocations Ágrik",
+      "name": "hmg-invocations-agrik",
+      "path": "/packs/hmg-invocations-agrik.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Haléa",
+      "name": "hmg-invocations-halea",
+      "path": "/packs/hmg-invocations-halea.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Ilvîr",
+      "name": "hmg-invocations-ilvir",
+      "path": "/packs/hmg-invocations-ilvir.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Laráni",
+      "name": "hmg-invocations-larani",
+      "path": "/packs/hmg-invocations-larani.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Môrgath",
+      "name": "hmg-invocations-morgath",
+      "path": "/packs/hmg-invocations-morgath.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Navéh",
+      "name": "hmg-invocations-naveh",
+      "path": "/packs/hmg-invocations-naveh.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Peóni",
+      "name": "hmg-invocations-peoni",
+      "path": "/packs/hmg-invocations-peoni.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Sárajìn",
+      "name": "hmg-invocations-sarajin",
+      "path": "/packs/hmg-invocations-sarajin.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Sávè-K'nôr",
+      "name": "hmg-invocations-save-knor",
+      "path": "/packs/hmg-invocations-save-knor.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Invocations Siém",
+      "name": "hmg-invocations-siem",
+      "path": "/packs/hmg-invocations-siem.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Psionics",
+      "name": "hmg-psionics",
+      "path": "/packs/hmg-psionics.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Skills Combat",
+      "name": "hmg-skills-combat",
+      "path": "/packs/hmg-skills-combat.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Skills Communication",
+      "name": "hmg-skills-communication",
+      "path": "/packs/hmg-skills-communication.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Skills Craft and Lore",
+      "name": "hmg-skills-craft-and-lore",
+      "path": "/packs/hmg-skills-craft-and-lore.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Skills Physical",
+      "name": "hmg-skills-physical",
+      "path": "/packs/hmg-skills-physical.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Skills Ritual",
+      "name": "hmg-skills-ritual",
+      "path": "/packs/hmg-skills-ritual.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Axes",
+      "name": "hmg-weapons-axes",
+      "path": "/packs/hmg-weapons-axes.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Bows",
+      "name": "hmg-weapons-bows",
+      "path": "/packs/hmg-weapons-bows.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Clubbing Weapons",
+      "name": "hmg-weapons-clubbing-weapons",
+      "path": "/packs/hmg-weapons-clubbing-weapons.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Flails",
+      "name": "hmg-weapons-flails",
+      "path": "/packs/hmg-weapons-flails.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Knives and Shortswords",
+      "name": "hmg-weapons-knives-and-shortswords",
+      "path": "/packs/hmg-weapons-knives-and-shortswords.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Longswords",
+      "name": "hmg-weapons-longswords",
+      "path": "/packs/hmg-weapons-longswords.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Missile",
+      "name": "hmg-weapons-missile-weapons",
+      "path": "/packs/hmg-weapons-missile-weapons.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Natural Weapons",
+      "name": "hmg-weapons-natural",
+      "path": "/packs/hmg-weapons-natural.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Nets and Whips",
+      "name": "hmg-weapons-nets-and-whips",
+      "path": "/packs/hmg-weapons-nets-and-whips.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Other Missile Weapons",
+      "name": "hmg-weapons-other-missile-weapons",
+      "path": "/packs/hmg-weapons-other-missile-weapoms.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Polearms",
+      "name": "hmg-weapons-polearms",
+      "path": "/packs/hmg-weapons-polearms.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Shields",
+      "name": "hmg-weapons-shields",
+      "path": "/packs/hmg-weapons-shields.db",
+      "system": "hm3",
+      "entity": "Item"
+    },
+    {
+      "label": "HMG Weapons Staves",
+      "name": "hmg-weapons-staves",
+      "path": "/packs/hmg-weapons-staves.db",
+      "system": "hm3",
+      "entity": "Item"
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "socket": true,
+  "gridDistance": 5,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": "shockIndex",
+  "secondaryTokenAttribute": null,
+  "url": "https://github.com/toastygm/HarnMaster-3-FoundryVTT/",
+  "manifest": "https://github.com/TimoLemburg/hm-gold/raw/latest/system_hmg_migration.json",
+  "download": "https://github.com/toastygm/HarnMaster-3-FoundryVTT/archive/v1.2.21.zip",
+  "flags": {
+    "allowBugReporter": true
+  }
+
+}
