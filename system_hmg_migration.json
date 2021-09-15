@@ -453,7 +453,7 @@
   "primaryTokenAttribute": "shockIndex",
   "secondaryTokenAttribute": null,
   "url": "https://github.com/toastygm/HarnMaster-3-FoundryVTT/",
-  "manifest": "https://github.com/TimoLemburg/hm-gold/raw/latest/system_hmg_migration.json",
+  "manifest": "https://github.com/TimoLemburg/hm-gold/blob/master/system_hmg_migration.json",
   "download": "https://github.com/toastygm/HarnMaster-3-FoundryVTT/archive/v1.2.21.zip",
   "flags": {
     "allowBugReporter": true
